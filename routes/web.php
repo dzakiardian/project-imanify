@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AllItemController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -15,4 +16,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->midd
 
 Route::prefix('dashboard')->middleware('auth')->group(function() {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::prefix('all-items')->group(function() {
+        Route::get('/', [AllItemController::class, 'index'])->name('all-items');
+    });
 });
