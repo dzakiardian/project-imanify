@@ -22,7 +22,7 @@
                             <div class="search">
                                 <form action="" method="get" class="d-flex gap-2">
                                     <input list="searchs" name="search" id="search" class="form-control"
-                                        placeholder="Search anyware...">
+                                        placeholder="Search anyware..." value="{{ Request::query('search') }}">
                                     <datalist id="searchs">
                                         <option value="Lab PPLG 1">
                                         <option value="Lab PPLG 2">

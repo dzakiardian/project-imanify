@@ -26,7 +26,7 @@ class AllItemFactory extends Factory
             'status' => $status[0],
             'place' => fake()->city(),
             'description' => fake()->address(),
-            'user_id' => '7013',
+            'user_id' => '6186',
         ];
     }
 }
