@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AllItem;
+use App\Models\Place;
 use Illuminate\Http\Request;
 
 class AllItemController extends Controller
@@ -25,6 +26,17 @@ class AllItemController extends Controller
             'page_title' => 'All Items',
             'active' => 'all-items',
             'url' => 'dashboard/all-items',
+        ]);
+    }
+
+    public function showCreateItem()
+    {
+        $places = Place::all();
+        return view('dashboard.all-items.create', [
+            'places' => $places,
+            'page_title' => 'Create Item',
+            'active' => 'all-items',
+            'url' => 'dashboard/all-items/create',
         ]);
     }
 }
