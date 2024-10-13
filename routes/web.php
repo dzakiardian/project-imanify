@@ -18,5 +18,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::prefix('all-items')->group(function() {
         Route::get('/', [AllItemController::class, 'index'])->name('all-items');
+        Route::get('/create', [AllItemController::class, 'showCreateItem'])->name('all-items.create');
     });
 });

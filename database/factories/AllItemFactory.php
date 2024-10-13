@@ -18,6 +18,7 @@ class AllItemFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::pluck('id')->random();
         $status = ['active', 'broken', 'mainten', 'stock'];
         shuffle($status);
         return [
@@ -26,7 +27,7 @@ class AllItemFactory extends Factory
             'status' => $status[0],
             'place' => fake()->city(),
             'description' => fake()->address(),
-            'user_id' => '6186',
+            'user_id' => $user,
         ];
     }
 }
