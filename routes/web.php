@@ -19,5 +19,9 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
     Route::prefix('all-items')->group(function() {
         Route::get('/', [AllItemController::class, 'index'])->name('all-items');
         Route::get('/create', [AllItemController::class, 'showCreateItem'])->name('all-items.create');
+        Route::post('/create', [AllItemController::class, 'createItem']);
+        Route::get('/edit/{id}', [AllItemController::class, 'showEditItem'])->name('all-items.edit');
+        Route::post('/edit/{id}', [AllItemController::class, 'editItem']);
+        Route::delete('/delete/{id}', [AllItemController::class, 'deleteItem'])->name('all-items.delete');
     });
 });

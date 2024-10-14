@@ -74,11 +74,14 @@
                                             <td class="text-bold-500">{{ $item->place }}</td>
                                             <td class="text-bold-500">{{ $item->description }}</td>
                                             <td class="text-bold-500">{{ $item->user->name }}</td>
-                                            <td>
-                                                <a href="/dashboard/all-items/edit/{{ $item->id }}"><i
-                                                        class="bi bi-pencil text-warning"></i></a> | <a
-                                                    href="/dashboard/all-items/delete/{{ $item->id }}"><i
-                                                        class="bi bi-trash text-danger"></i></a>
+                                            <td class="d-flex gap-2">
+                                                <a href="/dashboard/all-items/edit/{{ $item->id }}" class="btn btn-warning"><i
+                                                        class="bi bi-pencil"></i></a><form action="{{ route('all-items.delete', ['id' => $item->id]) }}" method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" onclick="return confirm('Sure deleted it?')" class="btn btn-danger"><i
+                                                                class="bi bi-trash"></i></button>
+                                                        </form>
                                             </td>
                                         </tr>
                                     @endforeach
