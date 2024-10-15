@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AllItemController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DescriptionItemController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::get('/edit/{id}', [AllItemController::class, 'showEditItem'])->name('all-items.edit');
         Route::post('/edit/{id}', [AllItemController::class, 'editItem']);
         Route::delete('/delete/{id}', [AllItemController::class, 'deleteItem'])->name('all-items.delete');
+    });
+    Route::prefix('description-items')->group(function() {
+        Route::get('/', [DescriptionItemController::class, 'index'])->name('description-items');
+        Route::get('/create', [DescriptionItemController::class, 'showCreateDescriptionItem'])->name('description-items.create');
+        Route::post('/create', [DescriptionItemController::class, 'createDescriptionItem']);
     });
 });
