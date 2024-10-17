@@ -59,11 +59,13 @@
                                             <td class="text-bold-500">{{ $descriptionItem->date }}</td>
                                             <td class="text-bold-500">{{ $descriptionItem->source_of_found }}</td>
                                             <td class="text-bold-500">{{ $descriptionItem->user->name }}</td>
-                                            <td>
-                                                <a href="/dashboard/description-items/edit"><i
-                                                        class="bi bi-pencil text-warning"></i></a> | <a
-                                                    href="/dashboard/all-items/delete"><i
-                                                        class="bi bi-trash text-danger"></i></a>
+                                            <td class="d-flex gap-2">
+                                                <a href="/dashboard/description-items/edit/{{ $descriptionItem->id }}" class="btn btn-warning"><i
+                                                        class="bi bi-pencil"></i></a><form action=""
+                                                    method="post">
+                                                    <button type="submit" class="btn btn-danger"><i
+                                                            class="bi bi-trash"></i></button>
+                                                </form>
                                             </td>
 
                                         </tr>

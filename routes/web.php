@@ -29,5 +29,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::get('/', [DescriptionItemController::class, 'index'])->name('description-items');
         Route::get('/create', [DescriptionItemController::class, 'showCreateDescriptionItem'])->name('description-items.create');
         Route::post('/create', [DescriptionItemController::class, 'createDescriptionItem']);
+        Route::get('/edit/{id}', [DescriptionItemController::class, 'showEditDescriptionItem'])->name('description-items.edit');
     });
 });

@@ -10,13 +10,13 @@ class DescriptionItemController extends Controller
 {
     public function index(Request $request)
     {
-        if($request->query('search')) {
+        if ($request->query('search')) {
             $descriptionItem = DescriptionItem::with('user')
-            ->where('item_name', 'LIKE', "%{$request->query('search')}%")
-            ->orWhere('status', 'LIKE', "%{$request->query('search')}%")
-            ->orWhere('date', 'LIKE', "%{$request->query('search')}%")
-            ->orWhere('source_of_found', 'LIKE', "%{$request->query('search')}%")
-            ->paginate(10);
+                ->where('item_name', 'LIKE', "%{$request->query('search')}%")
+                ->orWhere('status', 'LIKE', "%{$request->query('search')}%")
+                ->orWhere('date', 'LIKE', "%{$request->query('search')}%")
+                ->orWhere('source_of_found', 'LIKE', "%{$request->query('search')}%")
+                ->paginate(10);
         } else {
             $descriptionItem = DescriptionItem::with('user')->paginate(10);
         }
@@ -58,7 +58,23 @@ class DescriptionItemController extends Controller
         DescriptionItem::create($rules);
 
         return redirect('/dashboard/description-items')->with(
-            'message', 'Success created description item'
+            'message',
+            'Success created description item'
+        );
+    }
+
+    public function showEditDescriptionItem(string $id)
+    {
+        $descriptionItem = DescriptionItem::find($id);
+
+        return view(
+            'dashboard.description-items.edit',
+            [
+                'descriptionItem' => $descriptionItem,
+                'page_title' => 'Edit Description Items',
+                'url' => 'dashboard/description-items/edit',
+                'active' => 'description-items',
+            ]
         );
     }
 }
