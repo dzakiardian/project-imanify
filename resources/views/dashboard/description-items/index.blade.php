@@ -4,7 +4,7 @@
     <section class="section">
         <div class="row" id="basic-table">
             @session('message')
-                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <div class="alert alert-primary alert-dismissible fade show" role="alert" id="alert-message">
                     {{ session('message') }}.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -61,9 +61,11 @@
                                             <td class="text-bold-500">{{ $descriptionItem->user->name }}</td>
                                             <td class="d-flex gap-2">
                                                 <a href="/dashboard/description-items/edit/{{ $descriptionItem->id }}" class="btn btn-warning"><i
-                                                        class="bi bi-pencil"></i></a><form action=""
+                                                        class="bi bi-pencil"></i></a><form action="{{ route('description-items.delete', ["id" => $descriptionItem->id]) }}"
                                                     method="post">
-                                                    <button type="submit" class="btn btn-danger"><i
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button type="submit" onclick="return confirm('Sure deleted this description item?')" class="btn btn-danger"><i
                                                             class="bi bi-trash"></i></button>
                                                 </form>
                                             </td>

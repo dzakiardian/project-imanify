@@ -2,6 +2,12 @@
 
 @section('app')
     <section id="multiple-column-form">
+        @session('message')
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                {{ session('message') }}.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endsession
         <div class="row match-height">
             <div class="col-12">
                 <div class="card">
@@ -62,7 +68,8 @@
                                         <div class="form-group">
                                             <label for="place-column">Date</label>
                                             <input type="date" id="date-column"
-                                                class="form-control @error('date') is-invalid @enderror" name="date" value="{{ old('date') }}">
+                                                class="form-control @error('date') is-invalid @enderror" name="date"
+                                                value="{{ old('date') }}">
                                             @error('date')
                                                 <div class="invalid-feedback">
                                                     <i class="bx bx-radio-circle"></i>
@@ -76,7 +83,8 @@
                                             <label for="place-column">Source of found</label>
                                             <input list="sources"
                                                 class="form-control @error('source_of_found') is-invalid @enderror"
-                                                name="source_of_found" id="source_of_found" placeholder="Source of found" value="{{ old('source_of_found') }}">
+                                                name="source_of_found" id="source_of_found" placeholder="Source of found"
+                                                value="{{ old('source_of_found') }}">
                                             <datalist id="sources">
                                                 <option value="APBD">
                                                 <option value="BOS">

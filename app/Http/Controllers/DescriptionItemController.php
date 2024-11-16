@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\DescriptionItem;
+use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class DescriptionItemController extends Controller
 {
@@ -55,12 +58,18 @@ class DescriptionItemController extends Controller
 
         $rules['user_id'] = Auth::user()->id;
 
-        DescriptionItem::create($rules);
+        try {
+            DescriptionItem::create($rules);
 
-        return redirect('/dashboard/description-items')->with(
-            'message',
-            'Success created description item'
-        );
+            return redirect('/dashboard/description-items')->with(
+                'message',
+                'Success created description item'
+            );
+        } catch (QueryException $e) {
+            return back()->with('message', 'Database error: ' . $e->getMessage());
+        } catch (Exception $e) {
+            return back()->with('message', 'Error : ' . $e->getMessage());
+        }
     }
 
     public function showEditDescriptionItem(string $id)
@@ -76,5 +85,33 @@ class DescriptionItemController extends Controller
                 'active' => 'description-items',
             ]
         );
+    }
+
+    public function editDescriptionItem(Request $request, string $id)
+    {
+        $rules = $request->validate([
+            'item_name' => ['required', 'min:3', 'max:20'],
+            'amount' => ['required', 'numeric'],
+            'status' => ['required'],
+            'date' => ['required', 'date'],
+            'source_of_found' => ['required'],
+        ]);
+
+        $rules['user_id'] = Auth::user()->id;
+
+        $item = DescriptionItem::findOrFail($id);
+        $item->update($rules);
+        return redirect('/dashboard/description-items')->with('message', 'Success edited description item');
+    }
+
+    public function deleteDescriptionItem(string $id)
+    {
+        $descriptionItem = DescriptionItem::find($id);
+        if($descriptionItem) {
+            $descriptionItem->destroy($id);
+            return redirect('/dashboard/description-items')->with('message', 'Success deleted description item');
+        } else {
+            return back()->with('message', 'Failed deleting description item');
+        }
     }
 }

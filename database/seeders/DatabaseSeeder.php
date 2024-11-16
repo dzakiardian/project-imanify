@@ -42,9 +42,9 @@ class DatabaseSeeder extends Seeder
             'place_name' => 'Toolman',
         ]);
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory()->create([
+            'name' => 'Anggelika',
+            'email' => 'anggelika@family.com',
+        ]);
     }
 }

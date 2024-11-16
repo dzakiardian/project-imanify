@@ -26,7 +26,7 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo">
-                        <h1>Manify</h1>
+                        <h1>Imanify</h1>
                     </div>
                     @session('message')
                         <div class="alert alert-primary alert-dismissible fade show" role="alert">
