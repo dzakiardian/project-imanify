@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(AllItem::class, 'user_id', 'id');
     }
+
+    public function descriptionItem(): HasMany
+    {
+        return $this->hasMany(DescriptionItem::class, 'user_id', 'id');
+    }
 }

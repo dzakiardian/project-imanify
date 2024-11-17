@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AllItem;
+use App\Models\DescriptionItem;
 use App\Models\Place;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,6 +19,8 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
 
         AllItem::factory(20)->create();
+
+        DescriptionItem::factory(20)->create();
 
         Place::factory()->create([
             'place_name' => 'Lab PPLG 1',
@@ -39,9 +42,9 @@ class DatabaseSeeder extends Seeder
             'place_name' => 'Toolman',
         ]);
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory()->create([
+            'name' => 'Anggelika',
+            'email' => 'anggelika@family.com',
+        ]);
     }
 }

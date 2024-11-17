@@ -26,7 +26,7 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo">
-                        <h1>Manify</h1>
+                        <h1>Imanify</h1>
                     </div>
                     @session('message')
                         <div class="alert alert-primary alert-dismissible fade show" role="alert">
@@ -72,13 +72,6 @@
                                     See password
                                 </label>
                             </div>
-                        </div>
-                        <div class="form-check form-check-lg d-flex align-items-end">
-                            <input class="form-check-input me-2" name="keep_logged_in" type="checkbox" value="1"
-                                id="flexCheckDefault">
-                            <label class="form-check-label text-gray-600" for="flexCheckDefault">
-                                Keep me logged in
-                            </label>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
                     </form>
