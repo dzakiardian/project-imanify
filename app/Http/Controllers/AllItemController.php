@@ -100,4 +100,36 @@ class AllItemController extends Controller
             'message', 'Success deleted item'
         );
     }
+
+    public function handleViewPDF(): void
+    {
+        $mpdf = new \Mpdf\Mpdf();
+
+        $allItems = AllItem::orderBy('created_at', 'asc')->get();
+
+        $mpdf->WriteHTML(view(
+            'components.all-items-pdf',
+            [
+                'allItems' => $allItems,
+                'page_title' => 'Create PDF All Items',
+            ]
+        ));
+        $mpdf->Output();
+    }
+
+    public function handleDownloadPDF()
+    {
+        $mpdf = new \Mpdf\Mpdf();
+
+        $allItems = AllItem::orderBy('created_at', 'asc')->get();
+
+        $mpdf->WriteHTML(view(
+            'components.all-items-pdf',
+            [
+                'allItems' => $allItems,
+                'page_title' => 'Create PDF All Items',
+            ]
+        ));
+        $mpdf->Output('inventaris-semua-barang.pdf', 'D');
+    }
 }

@@ -26,6 +26,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::get('/edit/{id}', [AllItemController::class, 'showEditItem'])->name('all-items.edit');
         Route::post('/edit/{id}', [AllItemController::class, 'editItem']);
         Route::delete('/delete/{id}', [AllItemController::class, 'deleteItem'])->name('all-items.delete');
+        Route::get('/view-pdf', [AllItemController::class, 'handleViewPDF'])->name('all-items.view-pdf');
+        Route::get('/download-pdf', [AllItemController::class, 'handleDownloadPDF'])->name('all-items.download-pdf');
     });
     Route::prefix('description-items')->group(function() {
         Route::get('/', [DescriptionItemController::class, 'index'])->name('description-items');
@@ -34,5 +36,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::get('/edit/{id}', [DescriptionItemController::class, 'showEditDescriptionItem'])->name('description-items.edit');
         Route::put('/edit/{id}', [DescriptionItemController::class, 'editDescriptionItem']);
         Route::delete('/delete/{id}', [DescriptionItemController::class, 'deleteDescriptionItem'])->name('description-items.delete');
+        Route::get('/view-pdf', [DescriptionItemController::class, 'handleViewPDF'])->name('description-items.view-pdf');
+        Route::get('/download-pdf', [DescriptionItemController::class, 'handleDownloadPDF'])->name('description-items.donwload-pdf');
     });
 });

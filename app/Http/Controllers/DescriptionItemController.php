@@ -107,11 +107,43 @@ class DescriptionItemController extends Controller
     public function deleteDescriptionItem(string $id)
     {
         $descriptionItem = DescriptionItem::find($id);
-        if($descriptionItem) {
+        if ($descriptionItem) {
             $descriptionItem->destroy($id);
             return redirect('/dashboard/description-items')->with('message', 'Success deleted description item');
         } else {
             return back()->with('message', 'Failed deleting description item');
         }
+    }
+
+    public function handleViewPDF(): void
+    {
+        $mpdf = new \Mpdf\Mpdf();
+
+        $descriptionItems = DescriptionItem::orderBy('date', 'asc')->get();
+
+        $mpdf->WriteHTML(view(
+            'components.description-items-pdf',
+            [
+                'descriptionItems' => $descriptionItems,
+                'page_title' => 'Create PDF Description Items',
+            ]
+        ));
+        $mpdf->Output();
+    }
+
+    public function handleDownloadPDF(): void
+    {
+        $mpdf = new \Mpdf\Mpdf();
+
+        $descriptionItems = DescriptionItem::orderBy('date', 'asc')->get();
+
+        $mpdf->WriteHTML(view(
+            'components.description-items-pdf',
+            [
+                'descriptionItems' => $descriptionItems,
+                'page_title' => 'Create PDF Description Items',
+            ]
+        ));
+        $mpdf->Output('inventaris-barang-masuk-barang-keluar.pdf', 'D');
     }
 }
