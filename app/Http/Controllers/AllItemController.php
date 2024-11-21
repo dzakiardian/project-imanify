@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\AllItem;
 use App\Models\Place;
+use GuzzleHttp\Psr7\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Auth;
 
 class AllItemController extends Controller
@@ -131,5 +134,16 @@ class AllItemController extends Controller
             ]
         ));
         $mpdf->Output('inventaris-semua-barang.pdf', 'D');
+    }
+
+    public function handleApi(): JsonResponse
+    {
+        $allItem = AllItem::with('user:id,name')->get();
+
+        return response()->json([
+            'success' => true,
+            'statusCode' => 200,
+            'data' => $allItem,
+        ]);
     }
 }

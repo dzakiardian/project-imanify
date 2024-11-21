@@ -83,6 +83,23 @@
 
                 </li>
 
+                <li class="sidebar-item  has-sub {{ $active == 'all-tools' ? 'active' : '' }}">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-collection-fill"></i>
+                        <span>All Tools</span>
+                    </a>
+
+                    <ul class="submenu ">
+
+                        <li class="submenu-item  ">
+                            <a href="/dashboard/all-tools/place" class="submenu-link">Place</a>
+
+                        </li>
+
+                    </ul>
+
+                </li>
+
                 <li class="sidebar-item  has-sub {{ $active == 'borrowing' ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-collection-fill"></i>

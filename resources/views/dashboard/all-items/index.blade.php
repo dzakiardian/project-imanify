@@ -18,6 +18,8 @@
                         <div class="mb-3 d-flex justify-content-between">
                             <div class="button">
                                 <a href="/dashboard/all-items/create" class="btn btn-primary">Create</a>
+                                <a href="/dashboard/all-items/view-pdf" class="btn btn-danger">Show PDF</a>
+                                <a href="/dashboard/all-items/download-pdf" class="btn btn-danger">Download PDF</a>
                             </div>
                             <div class="search">
                                 <form action="" method="get" class="d-flex gap-2">

@@ -28,6 +28,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::delete('/delete/{id}', [AllItemController::class, 'deleteItem'])->name('all-items.delete');
         Route::get('/view-pdf', [AllItemController::class, 'handleViewPDF'])->name('all-items.view-pdf');
         Route::get('/download-pdf', [AllItemController::class, 'handleDownloadPDF'])->name('all-items.download-pdf');
+        Route::get('/get-api', [AllItemController::class, 'handleAPI']);
     });
     Route::prefix('description-items')->group(function() {
         Route::get('/', [DescriptionItemController::class, 'index'])->name('description-items');
