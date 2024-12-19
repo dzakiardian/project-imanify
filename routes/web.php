@@ -43,5 +43,9 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
     });
     Route::prefix('all-tools')->group(function() {
         Route::get('/place', [AllTool::class, 'place'])->name('all-tools.place');
+        Route::get('/place/{id}', [AllTool::class, 'getDetailPlace'])->name('all-tools.place.get-detail-place');
+        Route::post('/place', [AllTool::class, 'addPlace'])->name('all-tools.place.add-place');
+        Route::post('/place/edit', [AllTool::class, 'editPlace'])->name('all-tools.place.edit-place');
+        Route::delete('/place/{id}', [AllTool::class, 'deletePlace'])->name('all-tools.place.delete-place');
     });
 });
