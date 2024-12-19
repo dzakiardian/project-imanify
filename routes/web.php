@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AllItemController;
+use App\Http\Controllers\AllTool;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DescriptionItemController;
 use App\Http\Controllers\LoginController;
@@ -39,5 +40,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::delete('/delete/{id}', [DescriptionItemController::class, 'deleteDescriptionItem'])->name('description-items.delete');
         Route::get('/view-pdf', [DescriptionItemController::class, 'handleViewPDF'])->name('description-items.view-pdf');
         Route::get('/download-pdf', [DescriptionItemController::class, 'handleDownloadPDF'])->name('description-items.donwload-pdf');
+    });
+    Route::prefix('all-tools')->group(function() {
+        Route::get('/place', [AllTool::class, 'place'])->name('all-tools.place');
     });
 });
