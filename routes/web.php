@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AllItemController;
 use App\Http\Controllers\AllTool;
+use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DescriptionItemController;
 use App\Http\Controllers\LoginController;
@@ -47,5 +48,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::post('/place', [AllTool::class, 'addPlace'])->name('all-tools.place.add-place');
         Route::post('/place/edit', [AllTool::class, 'editPlace'])->name('all-tools.place.edit-place');
         Route::delete('/place/{id}', [AllTool::class, 'deletePlace'])->name('all-tools.place.delete-place');
+    });
+    Route::prefix('borrowing')->group(function() {
+        Route::get('/', [BorrowingController::class, 'index'])->name('borrowing.index');
     });
 });

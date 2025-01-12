@@ -139,7 +139,7 @@
         }
 
         function edit(id) {
-            fetch(`http://localhost:8000/dashboard/all-tools/place/${id}`)
+            fetch(`${document.location.origin}/dashboard/all-tools/place/${id}`)
                 .then(response => {
                     if (!response.ok) {
                         console.error('Failed ged detail place '.response.status);
