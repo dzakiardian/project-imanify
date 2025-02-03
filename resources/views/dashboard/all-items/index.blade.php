@@ -9,6 +9,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endsession
+            @session('error-message')
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error-message') }}.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endsession
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Table All Items</h4>

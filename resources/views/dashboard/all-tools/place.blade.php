@@ -1,6 +1,12 @@
 @extends('components.main')
 
 @section('app')
+    @session('error-message')
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error-message') }}.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endsession
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">Table Places</h4>
@@ -69,8 +75,7 @@
                                             method="post">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="submit"
-                                                onclick="return confirm('Sure deleted this place?')"
+                                            <button type="submit" onclick="return confirm('Sure deleted this place?')"
                                                 class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                         </form>
                                     </td>

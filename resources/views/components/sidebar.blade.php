@@ -109,7 +109,7 @@
                     <ul class="submenu ">
 
                         <li class="submenu-item  ">
-                            <a href="/dashboard/borrowing" class="submenu-link">Data Borrowing</a>
+                            <p class="submenu-link" onclick="alert('Maaf ya fitur ini belum tersedia\nTunggu beberapa waktu')">Data Borrowing</p>
 
                         </li>
 
