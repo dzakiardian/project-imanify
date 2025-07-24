@@ -15,6 +15,8 @@ Route::redirect('/', '/dashboard');
 
 Route::get('/login', [LoginController::class, 'showLogin'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate'])->middleware('guest');
+Route::get('/register', [LoginController::class, 'showRegister'])->name('register')->middleware('guest');
+Route::post('/register', [LoginController::class, 'register'])->middleware('guest');
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
