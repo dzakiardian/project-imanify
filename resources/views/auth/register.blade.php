@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
 
 
     <link rel="shortcut icon" href="{{ asset('assets/compiled/svg/favicon.svg') }}" type="image/x-icon">
@@ -34,11 +34,25 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endsession
-                    <h1 class="auth-title">Log in.</h1>
-                    <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
+                    <h1 class="auth-title">Register.</h1>
+                    <p class="auth-subtitle mb-5">Administrator Registration Form</p>
 
-                    <form action="{{ route('login') }}" method="POST">
+                    <form action="{{ route('register') }}" method="POST">
                         @csrf
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input type="text"
+                                class="form-control form-control-xl" name="name"
+                                placeholder="Full Name">
+                            <div class="form-control-icon">
+                                <i class="bi bi-person"></i>
+                            </div>
+                            @error('name')
+                                <div class="invalid-feedback">
+                                    <i class="bx bx-radio-circle"></i>
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="email"
                                 class="form-control form-control-xl @error('email') is-invalid @enderror" name="email"
@@ -73,11 +87,11 @@
                                 </label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Register</button>
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
-                        <p class="text-gray-600">Don't have an account? <a href={{ route('register') }} class="font-bold">Sign
-                                up</a>.</p>
+                        <p class="text-gray-600">Already have an account? <a href="/login" class="font-bold">Sign
+                                in</a>.</p>
                     </div>
                 </div>
             </div>
