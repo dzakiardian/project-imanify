@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AllItemController;
 use App\Http\Controllers\AllTool;
+use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DescriptionItemController;
 use App\Http\Controllers\LoginController;
@@ -45,5 +46,15 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
     });
     Route::prefix('all-tools')->group(function() {
         Route::get('/place', [AllTool::class, 'place'])->name('all-tools.place');
+    });
+    Route::prefix('borrowing')->group(function(){
+        Route::get('/', [BorrowingController::class, 'index'])->name('borrowing');
+        Route::get('/create',[BorrowingController::class, 'showCreateBorrowing']);
+        Route::post('/create', [BorrowingController::class, 'createBorrowing'])->name('borrowing.create');
+        Route::get('/edit/{id}', [BorrowingController::class, 'showEditBorrowing'])->name('borrowing.edit');
+        Route::put('/edit/{id}', [BorrowingController::class, 'editBorrowing']);
+        Route::delete('/delete/{id}', [BorrowingController::class, 'deleteBorrowing'])->name('borrowing.delete');
+        Route::get('/view-pdf', [BorrowingController::class, 'handleViewPDF'])->name('borrowing.view-pdf');
+        Route::get('/download-pdf', [BorrowingController::class, 'handleDownloadPDF'])->name('borrowing.donwload-pdf');
     });
 });

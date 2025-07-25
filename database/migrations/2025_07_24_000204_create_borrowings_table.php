@@ -16,9 +16,11 @@ return new class extends Migration
             $table->string('item_name');
             $table->integer('amount')->nullable();
             $table->string('borrower_name')->nullable();
-            $table->enum('borrower_status', ['guru', 'staf'])->nullable();
+            $table->enum('borrower_status', ['guru', 'staf', 'lainnya'])->nullable();
             $table->timestamp('loan_date')->useCurrent();
             $table->timestamp('return_date')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

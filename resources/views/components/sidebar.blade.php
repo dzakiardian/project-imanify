@@ -85,7 +85,7 @@
 
                 <li class="sidebar-item  has-sub {{ $active == 'all-tools' ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
-                        <i class="bi bi-collection-fill"></i>
+                        <i class="bi bi-tools"></i>
                         <span>All Tools</span>
                     </a>
 
@@ -102,7 +102,7 @@
 
                 <li class="sidebar-item  has-sub {{ $active == 'borrowing' ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
-                        <i class="bi bi-collection-fill"></i>
+                        <i class="bi bi-journal-check"></i>
                         <span>Borrowing</span>
                     </a>
 
