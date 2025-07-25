@@ -50,8 +50,9 @@
                                             <td class="text-bold-500">{{ $item->return_date }}</td>
                                             <td class="text-bold-500">{{ $item->user->name }}</td>
                                             <td class="d-flex gap-2">
-                                                <a href="" class="btn btn-warning"><i
-                                                        class="bi bi-pencil"></i></a><form action="" method="post">
+                                                <a href="/dashboard/borrowing/edit/{{ $item->id }}" class="btn btn-warning"><i
+                                                        class="bi bi-pencil"></i></a>
+                                                        <form action="" method="post">
                                                             @csrf
                                                             @method('delete')
                                                             <button type="submit" onclick="return confirm('Sure deleted it?')" class="btn btn-danger"><i
