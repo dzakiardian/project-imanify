@@ -6,6 +6,7 @@ use App\Models\Borrowing;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class BorrowingController extends Controller
 {
@@ -41,29 +42,39 @@ class BorrowingController extends Controller
     }
 
     public function createBorrowing(Request $request){
-        try {
-            $rules = $request->validate([
-                'item_name' => ['required'],
-                'amount' => ['required', 'numeric'],
-                'borrower_name' => ['required'],
-                'borrower_status' => ['required'],
-                'loan_date' => ['required'],
-                'return_date' => ['required'],
-            ]);
-            $rules['user_id'] = Auth::user()->id;
-            Borrowing::create($rules);
-            // Borrowing::create([
-            //     'item_name' => $request->item_name,
-            //     'amount' => $request->amount,
-            //     'borrower_name' => $request->borrower_name,
-            //     'borrower_status' => $request->borrower_status,
-            //     'loan_data' => $request->loan_data,
-            //     'return_date' => $request->return_date,
-            //     'user_id' => Auth::user()->id,
-            // ]);
-            return redirect()->route('borrowing')->with(['success', 'Loan Data Created Successfully']);
-        } catch(\Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
-        }
+        $rules = $request->validate([
+            'item_name' => ['required'],
+            'amount' => ['required', 'numeric'],
+            'borrower_name' => ['required'],
+            'borrower_status' => ['required'],
+            'loan_date' => ['required'],
+        ]);
+        $rules['user_id'] = Auth::user()->id;
+        Borrowing::create($rules);
+        return redirect()->route('borrowing')->with(['message', 'Loan Data Created Successfully']);
+    }
+
+    public function showEditBorrowing(string $id) {
+        $loan = Borrowing::find($id);
+        return view('dashboard.borrowing.edit', [
+            'loan' => $loan,
+            'page_title' => 'Update Loan Data',
+            'active' => 'borrowing',
+            'url' => 'dashboard/borrowing/edit',
+        ]);
+    }
+
+    public function editBorrowing(Request $request, string $id) {
+        $rules = $request->validate([
+            'item_name' => ['required'],
+            'amount' => ['required', 'numeric'],
+            'borrower_name' => ['required'],
+            'borrower_status' => ['required'],
+            'loan_date' => ['required'],
+            'return_date' => ['required']
+        ]);
+        $rules['user_id'] = Auth::user()->id;
+        Borrowing::find($id)->update($rules);
+        return redirect()->route('borrowing')->with(['message', 'Loan Data Created Successfully']);
     }
 }
